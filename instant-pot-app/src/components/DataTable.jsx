@@ -17,7 +17,8 @@ const DataTable = () => {
   const [columnFilters, setColumnFilters] = useState({});
 
   useEffect(() => {
-    fetch('/database.csv')
+    const baseUrl = import.meta.env.BASE_URL;
+    fetch(`${baseUrl}database.csv`)
       .then(response => {
         if (!response.ok) {
           throw new Error('Failed to load database');
