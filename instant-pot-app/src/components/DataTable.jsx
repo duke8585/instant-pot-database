@@ -17,7 +17,8 @@ const DataTable = () => {
   const [columnFilters, setColumnFilters] = useState({});
 
   useEffect(() => {
-    fetch('/database.csv')
+    const baseUrl = import.meta.env.BASE_URL;
+    fetch(`${baseUrl}database.csv`)
       .then(response => {
         if (!response.ok) {
           throw new Error('Failed to load database');
@@ -79,6 +80,9 @@ const DataTable = () => {
     getCoreRowModel: getCoreRowModel(),
     getSortedRowModel: getSortedRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
+    enableMultiSort: true,
+    enableSortingRemoval: false,
+    maxMultiSortColCount: 3,
   });
 
   const handleColumnFilterChange = (columnId, value) => {
@@ -122,7 +126,10 @@ const DataTable = () => {
     <div className="bg-white rounded-lg shadow-lg p-4 md:p-6">
       {/* Header with Search and Info */}
       <div className="mb-6">
-        <h2 className="text-2xl font-bold text-gray-900 mb-4">Cooking Times Database</h2>
+        <h2 className="text-2xl font-bold text-gray-900 mb-2">Cooking Times Database</h2>
+        <p className="text-sm text-gray-600 mb-4">
+          💡 <strong>Tip:</strong> Hold <kbd className="px-2 py-1 text-xs font-semibold text-gray-800 bg-gray-100 border border-gray-300 rounded">Shift</kbd> and click multiple column headers for hierarchical sorting
+        </p>
 
         {/* Global Search */}
         <div className="flex flex-col sm:flex-row gap-3 items-start sm:items-center justify-between">
@@ -178,9 +185,16 @@ const DataTable = () => {
                               )}
                             </span>
                             {header.column.getIsSorted() && (
-                              <span className="text-blue-600">
-                                {header.column.getIsSorted() === 'asc' ? '↑' : '↓'}
-                              </span>
+                              <div className="flex items-center gap-1">
+                                <span className="text-purple-600 font-bold text-base">
+                                  {header.column.getIsSorted() === 'asc' ? '↑' : '↓'}
+                                </span>
+                                {sorting.length > 1 && (
+                                  <span className="text-xs font-bold text-white bg-purple-600 rounded-full w-4 h-4 flex items-center justify-center">
+                                    {header.column.getSortIndex() + 1}
+                                  </span>
+                                )}
+                              </div>
                             )}
                           </div>
 
@@ -235,7 +249,7 @@ const DataTable = () => {
       {/* Footer with Stats */}
       <div className="mt-4 text-sm text-gray-600 text-center">
         <p>
-          Click column headers to sort • Use column filters for specific searches • Use global search for quick filtering
+          Click column headers to sort • Hold Shift + Click for multi-column sorting • Use column filters for specific searches • Use global search for quick filtering
         </p>
       </div>
     </div>
