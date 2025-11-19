@@ -8,7 +8,8 @@ const MarkdownViewer = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch('/instant-pot-guide.md')
+    const baseUrl = import.meta.env.BASE_URL;
+    fetch(`${baseUrl}instant-pot-guide.md`)
       .then(response => {
         if (!response.ok) {
           throw new Error('Failed to load guide');
