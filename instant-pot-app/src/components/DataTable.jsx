@@ -96,14 +96,14 @@ const DataTable = () => {
 
   if (loading) {
     return (
-      <div className="bg-white rounded-lg shadow-lg p-8">
+      <div className="bg-white/90 backdrop-blur-sm rounded-2xl shadow-xl p-8 border border-gray-100">
         <div className="animate-pulse">
-          <div className="h-10 bg-gray-200 rounded w-1/3 mb-6"></div>
+          <div className="h-10 bg-gradient-to-r from-gray-200 to-gray-300 rounded-lg w-1/3 mb-6"></div>
           <div className="space-y-3">
-            <div className="h-12 bg-gray-200 rounded"></div>
-            <div className="h-12 bg-gray-100 rounded"></div>
-            <div className="h-12 bg-gray-200 rounded"></div>
-            <div className="h-12 bg-gray-100 rounded"></div>
+            <div className="h-12 bg-gradient-to-r from-gray-200 to-gray-100 rounded-lg"></div>
+            <div className="h-12 bg-gradient-to-r from-gray-100 to-gray-200 rounded-lg"></div>
+            <div className="h-12 bg-gradient-to-r from-gray-200 to-gray-100 rounded-lg"></div>
+            <div className="h-12 bg-gradient-to-r from-gray-100 to-gray-200 rounded-lg"></div>
           </div>
         </div>
       </div>
@@ -112,74 +112,86 @@ const DataTable = () => {
 
   if (error) {
     return (
-      <div className="bg-red-50 border border-red-200 rounded-lg p-6">
-        <h3 className="text-red-800 font-semibold mb-2">Error Loading Database</h3>
+      <div className="bg-red-50/90 backdrop-blur-sm border-2 border-red-200 rounded-2xl shadow-xl p-6">
+        <h3 className="text-red-800 font-bold text-lg mb-2 flex items-center gap-2">
+          <span>⚠️</span> Error Loading Database
+        </h3>
         <p className="text-red-600">{error}</p>
       </div>
     );
   }
 
   return (
-    <div className="bg-white rounded-lg shadow-lg p-4 md:p-6">
+    <div className="bg-white/90 backdrop-blur-sm rounded-2xl shadow-xl p-6 md:p-8 border border-gray-100">
       {/* Header with Search and Info */}
       <div className="mb-6">
-        <h2 className="text-2xl font-bold text-gray-900 mb-4">Cooking Times Database</h2>
+        <div className="flex items-center gap-3 mb-6">
+          <div className="w-12 h-12 bg-gradient-to-br from-emerald-400 to-teal-500 rounded-xl shadow-lg flex items-center justify-center text-2xl">
+            📊
+          </div>
+          <h2 className="text-3xl font-bold bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">
+            Cooking Times Database
+          </h2>
+        </div>
 
         {/* Global Search */}
         <div className="flex flex-col sm:flex-row gap-3 items-start sm:items-center justify-between">
           <div className="flex-1 w-full sm:max-w-md">
-            <input
-              type="text"
-              value={globalFilter ?? ''}
-              onChange={e => setGlobalFilter(e.target.value)}
-              placeholder="Search all columns..."
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
-            />
+            <div className="relative">
+              <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 text-lg">🔍</span>
+              <input
+                type="text"
+                value={globalFilter ?? ''}
+                onChange={e => setGlobalFilter(e.target.value)}
+                placeholder="Search all columns..."
+                className="w-full pl-10 pr-4 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-purple-500 outline-none transition-all shadow-sm hover:border-gray-300"
+              />
+            </div>
           </div>
 
           <div className="flex items-center gap-3">
-            <span className="text-sm text-gray-600">
+            <span className="px-3 py-1.5 text-sm font-semibold text-purple-700 bg-purple-100 rounded-lg">
               {table.getFilteredRowModel().rows.length} of {data.length} rows
             </span>
             <button
               onClick={clearAllFilters}
-              className="px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors"
+              className="px-4 py-2.5 text-sm font-semibold text-gray-700 bg-gradient-to-r from-gray-100 to-gray-200 hover:from-gray-200 hover:to-gray-300 rounded-xl transition-all shadow-sm hover:shadow-md"
             >
-              Clear Filters
+              ✖️ Clear Filters
             </button>
           </div>
         </div>
       </div>
 
       {/* Table Container with Horizontal Scroll */}
-      <div className="overflow-x-auto -mx-4 md:mx-0">
+      <div className="overflow-x-auto -mx-4 md:mx-0 rounded-xl">
         <div className="inline-block min-w-full align-middle">
-          <div className="overflow-hidden border border-gray-200 rounded-lg">
-            <table className="min-w-full divide-y divide-gray-200">
-              <thead className="bg-gray-50">
+          <div className="overflow-hidden border-2 border-gray-200 rounded-xl shadow-lg">
+            <table className="min-w-full divide-y-2 divide-gray-200">
+              <thead className="bg-gradient-to-r from-purple-50 to-indigo-50">
                 {table.getHeaderGroups().map(headerGroup => (
                   <tr key={headerGroup.id}>
                     {headerGroup.headers.map(header => (
                       <th
                         key={header.id}
-                        className="px-4 py-3 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider"
+                        className="px-4 py-4 text-left text-xs font-bold text-gray-800 uppercase tracking-wider"
                       >
                         <div className="space-y-2">
                           {/* Column Header with Sort */}
                           <div
                             className={`flex items-center gap-2 ${
-                              header.column.getCanSort() ? 'cursor-pointer select-none hover:text-gray-900' : ''
+                              header.column.getCanSort() ? 'cursor-pointer select-none hover:text-purple-700 active:scale-95' : ''
                             }`}
                             onClick={header.column.getToggleSortingHandler()}
                           >
-                            <span className="truncate">
+                            <span className="truncate font-extrabold">
                               {flexRender(
                                 header.column.columnDef.header,
                                 header.getContext()
                               )}
                             </span>
                             {header.column.getIsSorted() && (
-                              <span className="text-blue-600">
+                              <span className="text-purple-600 font-bold text-base">
                                 {header.column.getIsSorted() === 'asc' ? '↑' : '↓'}
                               </span>
                             )}
@@ -191,7 +203,7 @@ const DataTable = () => {
                             value={columnFilters[header.column.id] || ''}
                             onChange={e => handleColumnFilterChange(header.column.id, e.target.value)}
                             placeholder={`Filter...`}
-                            className="w-full px-2 py-1 text-xs border border-gray-300 rounded focus:ring-1 focus:ring-blue-500 focus:border-blue-500 outline-none"
+                            className="w-full px-2 py-1.5 text-xs border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-400 focus:border-purple-400 outline-none bg-white hover:border-gray-400 transition-colors"
                             onClick={e => e.stopPropagation()}
                           />
                         </div>
@@ -200,23 +212,32 @@ const DataTable = () => {
                   </tr>
                 ))}
               </thead>
-              <tbody className="bg-white divide-y divide-gray-200">
+              <tbody className="bg-white divide-y divide-gray-100">
                 {table.getRowModel().rows.length === 0 ? (
                   <tr>
                     <td
                       colSpan={columns.length}
-                      className="px-4 py-8 text-center text-gray-500"
+                      className="px-4 py-12 text-center text-gray-500"
                     >
-                      No results found
+                      <div className="flex flex-col items-center gap-3">
+                        <span className="text-4xl">🔍</span>
+                        <p className="text-lg font-medium">No results found</p>
+                        <p className="text-sm text-gray-400">Try adjusting your filters</p>
+                      </div>
                     </td>
                   </tr>
                 ) : (
-                  table.getRowModel().rows.map(row => (
-                    <tr key={row.id} className="hover:bg-gray-50 transition-colors">
+                  table.getRowModel().rows.map((row, index) => (
+                    <tr
+                      key={row.id}
+                      className={`hover:bg-gradient-to-r hover:from-purple-50 hover:to-indigo-50 transition-all duration-150 ${
+                        index % 2 === 0 ? 'bg-white' : 'bg-gray-50/50'
+                      }`}
+                    >
                       {row.getVisibleCells().map(cell => (
                         <td
                           key={cell.id}
-                          className="px-4 py-3 text-sm text-gray-700 whitespace-nowrap"
+                          className="px-4 py-3.5 text-sm text-gray-700 whitespace-nowrap font-medium"
                         >
                           {flexRender(
                             cell.column.columnDef.cell,
@@ -234,9 +255,9 @@ const DataTable = () => {
       </div>
 
       {/* Footer with Stats */}
-      <div className="mt-4 text-sm text-gray-600 text-center">
-        <p>
-          Click column headers to sort • Use column filters for specific searches • Use global search for quick filtering
+      <div className="mt-6 p-4 bg-gradient-to-r from-purple-50 to-indigo-50 rounded-xl border border-purple-100">
+        <p className="text-sm text-gray-700 text-center font-medium">
+          💡 <strong>Tip:</strong> Click column headers to sort • Use column filters for specific searches • Use global search for quick filtering
         </p>
       </div>
     </div>
