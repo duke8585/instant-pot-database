@@ -80,6 +80,9 @@ const DataTable = () => {
     getCoreRowModel: getCoreRowModel(),
     getSortedRowModel: getSortedRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
+    enableMultiSort: true,
+    enableSortingRemoval: false,
+    maxMultiSortColCount: 3,
   });
 
   const handleColumnFilterChange = (columnId, value) => {
@@ -191,9 +194,16 @@ const DataTable = () => {
                               )}
                             </span>
                             {header.column.getIsSorted() && (
-                              <span className="text-purple-600 font-bold text-base">
-                                {header.column.getIsSorted() === 'asc' ? '↑' : '↓'}
-                              </span>
+                              <div className="flex items-center gap-1">
+                                <span className="text-purple-600 font-bold text-base">
+                                  {header.column.getIsSorted() === 'asc' ? '↑' : '↓'}
+                                </span>
+                                {sorting.length > 1 && (
+                                  <span className="text-xs font-bold text-white bg-purple-600 rounded-full w-4 h-4 flex items-center justify-center">
+                                    {header.column.getSortIndex() + 1}
+                                  </span>
+                                )}
+                              </div>
                             )}
                           </div>
 
@@ -257,7 +267,7 @@ const DataTable = () => {
       {/* Footer with Stats */}
       <div className="mt-6 p-4 bg-gradient-to-r from-purple-50 to-indigo-50 rounded-xl border border-purple-100">
         <p className="text-sm text-gray-700 text-center font-medium">
-          💡 <strong>Tip:</strong> Click column headers to sort • Use column filters for specific searches • Use global search for quick filtering
+          💡 <strong>Tip:</strong> Click column headers to sort • Hold <kbd className="px-1.5 py-0.5 bg-white border border-gray-300 rounded text-xs font-mono">Shift</kbd> and click for multi-column sorting • Use column filters for specific searches • Use global search for quick filtering
         </p>
       </div>
     </div>
