@@ -128,14 +128,10 @@ const DataTable = () => {
     <div className="bg-white/90 backdrop-blur-sm rounded-2xl shadow-xl p-6 md:p-8 border border-gray-100">
       {/* Header with Search and Info */}
       <div className="mb-6">
-        <div className="flex items-center gap-3 mb-6">
-          <div className="w-12 h-12 bg-gradient-to-br from-emerald-400 to-teal-500 rounded-xl shadow-lg flex items-center justify-center text-2xl">
-            📊
-          </div>
-          <h2 className="text-3xl font-bold bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">
-            Cooking Times Database
-          </h2>
-        </div>
+        <h2 className="text-2xl font-bold text-gray-900 mb-2">Cooking Times Database</h2>
+        <p className="text-sm text-gray-600 mb-4">
+          💡 <strong>Tip:</strong> Hold <kbd className="px-2 py-1 text-xs font-semibold text-gray-800 bg-gray-100 border border-gray-300 rounded">Shift</kbd> and click multiple column headers for hierarchical sorting
+        </p>
 
         {/* Global Search */}
         <div className="flex flex-col sm:flex-row gap-3 items-start sm:items-center justify-between">
@@ -265,9 +261,9 @@ const DataTable = () => {
       </div>
 
       {/* Footer with Stats */}
-      <div className="mt-6 p-4 bg-gradient-to-r from-purple-50 to-indigo-50 rounded-xl border border-purple-100">
-        <p className="text-sm text-gray-700 text-center font-medium">
-          💡 <strong>Tip:</strong> Click column headers to sort • Hold <kbd className="px-1.5 py-0.5 bg-white border border-gray-300 rounded text-xs font-mono">Shift</kbd> and click for multi-column sorting • Use column filters for specific searches • Use global search for quick filtering
+      <div className="mt-4 text-sm text-gray-600 text-center">
+        <p>
+          Click column headers to sort • Hold Shift + Click for multi-column sorting • Use column filters for specific searches • Use global search for quick filtering
         </p>
       </div>
     </div>
