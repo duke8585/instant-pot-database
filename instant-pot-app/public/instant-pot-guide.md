@@ -59,9 +59,9 @@
 
 ### Vegetable-Specific Tips
 
-**Steaming vs. Boiling**: Use a trivet or steamer basket to keep vegetables above water for true steaming, which preserves nutrients and prevents soggy texture. Exception: root vegetables can be placed directly in water.[^1], [^2]
+**Steaming vs. Boiling**: Use a trivet or steamer basket to keep vegetables above water for true steaming, which preserves nutrients and prevents soggy texture. Exception: root vegetables can be placed directly in water.[^1] [^2]
 
-**Zero-Minute Cooking**: Many delicate vegetables (broccoli, cauliflower, asparagus, sliced carrots) cook perfectly at "0 minutes" high pressure. They cook during the time it takes to reach pressure (5-10 minutes).[^3], [^4]
+**Zero-Minute Cooking**: Many delicate vegetables (broccoli, cauliflower, asparagus, sliced carrots) cook perfectly at "0 minutes" high pressure. They cook during the time it takes to reach pressure (5-10 minutes).[^3] [^4]
 
 **Quick Release Essential**: Always use quick release for vegetables to prevent overcooking and mushiness. Remove vegetables immediately after releasing pressure.[^5]
 
@@ -71,10 +71,10 @@
 
 ### Common Mistakes to Avoid
 
-1. **Overfilling**: Never fill past the max fill line (usually halfway for beans)[^6], [^7]
-2. **Insufficient liquid**: Always use minimum 1 cup water[^3], [^4]
+1. **Overfilling**: Never fill past the max fill line (usually halfway for beans)[^6] [^7]
+2. **Insufficient liquid**: Always use minimum 1 cup water[^3] [^4]
 3. **Forgetting to seal valve**: Check valve is set to "sealing" position
-4. **Using canned tomatoes with raw beans**: Acid prevents softening[^8], [^9]
+4. **Using canned tomatoes with raw beans**: Acid prevents softening[^8] [^9]
 5. **Quick releasing beans**: Can cause foaming through valve and uneven cooking[^10]
 6. **Leaving vegetables in pot**: Remove immediately to prevent overcooking from residual heat[^11]
 7. **Not accounting for bean age**: Old beans require significantly more time[^12]
@@ -87,13 +87,13 @@
 
 **Chickpeas**: Soaking cuts cooking time in half (10-18 minutes soaked vs. 40-60 minutes unsoaked). Multiple sources emphasize baking soda for creamier texture.
 
-**Beans**: Most beans follow similar patterns - soaking reduces time by 50-60%. Natural release is almost universally recommended to prevent splitting.[^13], [^14]
+**Beans**: Most beans follow similar patterns - soaking reduces time by 50-60%. Natural release is almost universally recommended to prevent splitting.[^13] [^14]
 
 **Vegetables**: "Zero-minute" cooking is a common technique for delicate vegetables - they cook during pressurization.[^15] Quick release is essential to prevent overcooking.[^16]
 
 **Water Ratios**: Significant variation exists even within the same ingredient. For soaked beans, ratios range from 1:2 to 1:4 depending on source and desired final consistency.[^17]
 
-**Release Methods**: This is perhaps the most debated aspect. Beans generally require natural release or timed NPR, while vegetables need immediate quick release.[^10], [^18]
+**Release Methods**: This is perhaps the most debated aspect. Beans generally require natural release or timed NPR, while vegetables need immediate quick release.[^10] [^18]
 
 **Source Quality**: Priority should be given to sources that specify exact conditions (pot size, ingredient quantity, altitude) and provide multiple variations for different texture preferences.
 
