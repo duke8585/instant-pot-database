@@ -30,7 +30,20 @@ const DataTable = () => {
           header: true,
           skipEmptyLines: true,
           complete: (results) => {
-            setData(results.data);
+            // Clean up ingredient names - remove parenthetical info for legumes/lentils but keep for vegetables
+            const cleanedData = results.data.map(row => {
+              const ingredient = row.Ingredient || '';
+              const legumeKeywords = ['Lentil', 'Chickpea', 'Bean', 'Pea'];
+              const isLegume = legumeKeywords.some(keyword => ingredient.includes(keyword));
+
+              if (isLegume && ingredient.includes('(') && ingredient.includes(')')) {
+                // Remove parenthetical info for legumes
+                row.Ingredient = ingredient.replace(/\s*\([^)]*\)/g, '').trim();
+              }
+
+              return row;
+            });
+            setData(cleanedData);
             setLoading(false);
           },
           error: (err) => {
@@ -48,12 +61,40 @@ const DataTable = () => {
   const columns = useMemo(() => {
     if (data.length === 0) return [];
 
-    return Object.keys(data[0]).map(key => ({
-      accessorKey: key,
-      header: key,
-      cell: info => info.getValue(),
-      filterFn: 'includesString',
-    }));
+    return Object.keys(data[0])
+      .filter(key => key !== 'Source URL') // Hide Source URL column
+      .map(key => {
+        if (key === 'Source') {
+          return {
+            accessorKey: key,
+            header: key,
+            cell: info => {
+              const source = info.getValue();
+              const sourceUrl = info.row.original['Source URL'];
+              if (sourceUrl && sourceUrl.trim()) {
+                return (
+                  <a
+                    href={sourceUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-600 hover:text-blue-800 hover:underline"
+                  >
+                    {source}
+                  </a>
+                );
+              }
+              return source;
+            },
+            filterFn: 'includesString',
+          };
+        }
+        return {
+          accessorKey: key,
+          header: key,
+          cell: info => info.getValue(),
+          filterFn: 'includesString',
+        };
+      });
   }, [data]);
 
   const filteredData = useMemo(() => {
@@ -165,9 +206,9 @@ const DataTable = () => {
       {/* Table Container with Horizontal Scroll */}
       <div className="overflow-x-auto -mx-4 md:mx-0 rounded-xl">
         <div className="inline-block min-w-full align-middle">
-          <div className="overflow-hidden border-2 border-gray-200 rounded-xl shadow-lg">
-            <table className="min-w-full divide-y-2 divide-gray-200">
-              <thead className="bg-gradient-to-r from-purple-50 to-indigo-50">
+          <div className="max-h-[600px] overflow-auto border border-gray-200 rounded-lg">
+            <table className="min-w-full divide-y divide-gray-200">
+              <thead className="bg-gray-50 sticky top-0 z-10 shadow-sm">
                 {table.getHeaderGroups().map(headerGroup => (
                   <tr key={headerGroup.id}>
                     {headerGroup.headers.map(header => (
