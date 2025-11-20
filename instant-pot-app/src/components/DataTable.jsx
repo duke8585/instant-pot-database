@@ -214,11 +214,11 @@ const DataTable = () => {
                             </span>
                             {header.column.getIsSorted() && (
                               <div className="flex items-center gap-1">
-                                <span className="text-purple-600 font-bold text-base">
+                                <span className="text-red-600 font-bold text-base">
                                   {header.column.getIsSorted() === 'asc' ? '↑' : '↓'}
                                 </span>
                                 {sorting.length > 1 && (
-                                  <span className="text-xs font-bold text-white bg-purple-600 rounded-full w-4 h-4 flex items-center justify-center">
+                                  <span className="text-xs font-bold text-white bg-red-600 rounded-full w-4 h-4 flex items-center justify-center">
                                     {header.column.getSortIndex() + 1}
                                   </span>
                                 )}

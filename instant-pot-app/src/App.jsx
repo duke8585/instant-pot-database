@@ -6,9 +6,16 @@ function App() {
   const [activeTab, setActiveTab] = useState('database');
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
+    <div className="min-h-screen bg-gradient-to-br from-red-50 via-gray-50 to-red-100 relative overflow-hidden">
+      {/* Animated Background Blobs */}
+      <div className="fixed inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute -top-40 -right-40 w-80 h-80 bg-red-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob"></div>
+        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-gray-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-red-200 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-4000"></div>
+      </div>
+
       {/* Header */}
-      <header className="bg-white shadow-sm border-b border-gray-200">
+      <header className="bg-white/95 backdrop-blur-sm shadow-sm border-b border-gray-200 relative z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             <div>
@@ -24,21 +31,21 @@ function App() {
                 onClick={() => setActiveTab('database')}
                 className={`px-4 py-2 rounded-md text-sm font-medium transition-all ${
                   activeTab === 'database'
-                    ? 'bg-white text-blue-600 shadow-sm'
+                    ? 'bg-red-600 text-white shadow-sm'
                     : 'text-gray-600 hover:text-gray-900'
                 }`}
               >
-                Database
+                📊 Database
               </button>
               <button
                 onClick={() => setActiveTab('guide')}
                 className={`px-4 py-2 rounded-md text-sm font-medium transition-all ${
                   activeTab === 'guide'
-                    ? 'bg-white text-blue-600 shadow-sm'
+                    ? 'bg-red-600 text-white shadow-sm'
                     : 'text-gray-600 hover:text-gray-900'
                 }`}
               >
-                Guide
+                📖 Guide
               </button>
             </div>
           </div>
@@ -46,14 +53,14 @@ function App() {
       </header>
 
       {/* Main Content */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 relative z-10">
         <div className="animate-fadeIn">
           {activeTab === 'database' ? <DataTable /> : <MarkdownViewer />}
         </div>
       </main>
 
       {/* Footer */}
-      <footer className="bg-white border-t border-gray-200 mt-12">
+      <footer className="bg-white/95 backdrop-blur-sm border-t border-gray-200 mt-12 relative z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="text-center text-sm text-gray-600">
             <p>
@@ -64,7 +71,7 @@ function App() {
                 href="https://github.com/duke8585/instant-pot-database"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-blue-600 hover:text-blue-800 font-medium"
+                className="text-red-600 hover:text-red-800 font-medium"
               >
                 View on GitHub
               </a>
@@ -85,8 +92,35 @@ function App() {
           }
         }
 
+        @keyframes blob {
+          0% {
+            transform: translate(0px, 0px) scale(1);
+          }
+          33% {
+            transform: translate(30px, -50px) scale(1.1);
+          }
+          66% {
+            transform: translate(-20px, 20px) scale(0.9);
+          }
+          100% {
+            transform: translate(0px, 0px) scale(1);
+          }
+        }
+
         .animate-fadeIn {
           animation: fadeIn 0.3s ease-out;
+        }
+
+        .animate-blob {
+          animation: blob 7s infinite;
+        }
+
+        .animation-delay-2000 {
+          animation-delay: 2s;
+        }
+
+        .animation-delay-4000 {
+          animation-delay: 4s;
         }
       `}</style>
     </div>
