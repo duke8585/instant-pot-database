@@ -30,20 +30,7 @@ const DataTable = () => {
           header: true,
           skipEmptyLines: true,
           complete: (results) => {
-            // Clean up ingredient names - remove parenthetical info for legumes/lentils but keep for vegetables
-            const cleanedData = results.data.map(row => {
-              const ingredient = row.Ingredient || '';
-              const legumeKeywords = ['Lentil', 'Chickpea', 'Bean', 'Pea'];
-              const isLegume = legumeKeywords.some(keyword => ingredient.includes(keyword));
-
-              if (isLegume && ingredient.includes('(') && ingredient.includes(')')) {
-                // Remove parenthetical info for legumes
-                row.Ingredient = ingredient.replace(/\s*\([^)]*\)/g, '').trim();
-              }
-
-              return row;
-            });
-            setData(cleanedData);
+            setData(results.data);
             setLoading(false);
           },
           error: (err) => {
@@ -61,40 +48,40 @@ const DataTable = () => {
   const columns = useMemo(() => {
     if (data.length === 0) return [];
 
-    return Object.keys(data[0])
-      .filter(key => key !== 'Source URL') // Hide Source URL column
-      .map(key => {
-        if (key === 'Source') {
-          return {
-            accessorKey: key,
-            header: key,
-            cell: info => {
-              const source = info.getValue();
-              const sourceUrl = info.row.original['Source URL'];
-              if (sourceUrl && sourceUrl.trim()) {
-                return (
-                  <a
-                    href={sourceUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-blue-600 hover:text-blue-800 hover:underline"
-                  >
-                    {source}
-                  </a>
-                );
-              }
-              return source;
-            },
-            filterFn: 'includesString',
-          };
-        }
+    return Object.keys(data[0]).map(key => {
+      if (key === 'Source') {
         return {
           accessorKey: key,
           header: key,
-          cell: info => info.getValue(),
+          cell: info => {
+            const source = info.getValue();
+            // Parse markdown-style links: [text](url)
+            const linkMatch = source.match(/\[([^\]]+)\]\(([^)]+)\)/);
+            if (linkMatch) {
+              const [, text, url] = linkMatch;
+              return (
+                <a
+                  href={url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-600 hover:text-blue-800 hover:underline"
+                >
+                  {text}
+                </a>
+              );
+            }
+            return source;
+          },
           filterFn: 'includesString',
         };
-      });
+      }
+      return {
+        accessorKey: key,
+        header: key,
+        cell: info => info.getValue(),
+        filterFn: 'includesString',
+      };
+    });
   }, [data]);
 
   const filteredData = useMemo(() => {
@@ -232,11 +219,11 @@ const DataTable = () => {
                             </span>
                             {header.column.getIsSorted() && (
                               <div className="flex items-center gap-1">
-                                <span className="text-purple-600 font-bold text-base">
+                                <span className="text-red-600 font-bold text-base">
                                   {header.column.getIsSorted() === 'asc' ? '↑' : '↓'}
                                 </span>
                                 {sorting.length > 1 && (
-                                  <span className="text-xs font-bold text-white bg-purple-600 rounded-full w-4 h-4 flex items-center justify-center">
+                                  <span className="text-xs font-bold text-white bg-red-600 rounded-full w-4 h-4 flex items-center justify-center">
                                     {header.column.getSortIndex() + 1}
                                   </span>
                                 )}
