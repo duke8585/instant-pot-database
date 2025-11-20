@@ -55,7 +55,13 @@ function App() {
       {/* Main Content */}
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 relative z-10">
         <div className="animate-fadeIn">
-          {activeTab === 'database' ? <DataTable /> : <MarkdownViewer />}
+          {activeTab === 'database' ? (
+            <div className="w-[90vw] max-w-[95vw] mx-auto">
+              <DataTable />
+            </div>
+          ) : (
+            <MarkdownViewer />
+          )}
         </div>
       </main>
 
