@@ -26,10 +26,10 @@ function App() {
                 Complete cooking times and guide for dried legumes and vegetables
               </p>
             </div>
-            <div className="flex gap-2 bg-gray-100 p-1 rounded-lg">
+            <div className="flex gap-3 bg-white/90 backdrop-blur-sm p-1.5 rounded-xl shadow-md border border-gray-200/50">
               <button
                 onClick={() => setActiveTab('database')}
-                className={`px-4 py-2 rounded-md text-sm font-medium transition-all ${
+                className={`px-6 py-3 rounded-lg text-sm font-semibold transition-all duration-200 ${
                   activeTab === 'database'
                     ? 'bg-red-600 text-white shadow-sm'
                     : 'text-gray-600 hover:text-gray-900'
@@ -39,7 +39,7 @@ function App() {
               </button>
               <button
                 onClick={() => setActiveTab('guide')}
-                className={`px-4 py-2 rounded-md text-sm font-medium transition-all ${
+                className={`px-6 py-3 rounded-lg text-sm font-semibold transition-all duration-200 ${
                   activeTab === 'guide'
                     ? 'bg-red-600 text-white shadow-sm'
                     : 'text-gray-600 hover:text-gray-900'
@@ -76,6 +76,15 @@ function App() {
                 View on GitHub
               </a>
             </p>
+            <a
+              href="https://github.com/duke8585/instant-pot-database"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-gray-800 to-gray-900 text-white rounded-lg hover:from-gray-900 hover:to-black transition-all shadow-md hover:shadow-lg font-medium"
+            >
+              <span>⭐</span>
+              View on GitHub
+            </a>
           </div>
         </div>
       </footer>
