@@ -11,7 +11,9 @@
 **Natural vs. Quick Release**:
 
 - **Natural Pressure Release (NPR)**: Allows pressure to drop gradually. Best for beans to prevent splitting and ensure even cooking. Typically takes 15-25 minutes.
+
 - **Quick Release (QR)**: Manually vent steam immediately. Best for vegetables to prevent overcooking and maintain texture. Use caution as beans can foam through the valve.
+
 - **Timed NPR**: "10-minute NPR then QR" means wait 10 minutes, then manually release remaining pressure.
 
 ### Bean-Specific Best Practices
@@ -37,8 +39,11 @@
 **Soaking Considerations**:
 
 - **Benefits of Soaking**: Dramatically reduces cooking time (often by half), improves digestibility, reduces gas, produces more even texture, prevents split skins
+
 - **Quick-Soak Method**: Add beans and water to Instant Pot with 1 tsp salt. Pressure cook 2 minutes at high pressure, then slow natural release. Drain, rinse, and proceed with recipe
+
 - **Traditional Soak**: Cover beans with water by 2-3 inches. Soak 6-12 hours. Always discard soaking water and rinse before cooking
+
 - **Unsoaked Beans**: Can be cooked directly but may have uneven texture, split skins, and cause more gas. Add 10-20 minutes to cooking time
 
 **Water Ratios for Beans**:
