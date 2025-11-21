@@ -77,15 +77,12 @@ Open `database.csv` in your favorite editor.
 "Black Lentils","Unsoaked","High","10","1:2","10 min NPR then QR","Soft and creamy","Drain if needed","My Food Blog","https://myfoodblog.com/lentils"
 ```
 
-**5. Update the Public Copy**
+**5. Test Locally (Optional but Recommended)**
 
 ```bash
+# For local testing only, copy to public folder:
 cp database.csv instant-pot-app/public/database.csv
-```
 
-**6. Test Locally (Optional but Recommended)**
-
-```bash
 cd instant-pot-app
 npm install
 npm run dev
@@ -93,20 +90,23 @@ npm run dev
 
 Visit `http://localhost:5173` and verify your entry appears correctly.
 
-**7. Commit Your Changes**
+> **Important:** You only need to edit `database.csv` in your PR. Don't commit the public folder copy - GitHub Actions automatically syncs it when your PR is merged!
+
+**6. Commit Your Changes**
 
 ```bash
-git add database.csv instant-pot-app/public/database.csv
+# Only commit the main database.csv file
+git add database.csv
 git commit -m "Add cooking times for [ingredient] from [source]"
 ```
 
-**8. Push to Your Fork**
+**7. Push to Your Fork**
 
 ```bash
 git push origin add-my-cooking-times
 ```
 
-**9. Create a Pull Request**
+**8. Create a Pull Request**
 
 - Go to your fork on GitHub
 - Click "Pull Request"

@@ -106,19 +106,19 @@ The easiest way to contribute is by adding new entries to the database:
    - Include the source URL if available (use empty string `""` if not)
    - Be specific about conditions (soaking time, bean age, etc.)
 
-4. **Copy to public folder:**
+4. **Test locally** (optional but recommended):
    ```bash
+   # For local testing only, copy to public folder:
    cp database.csv instant-pot-app/public/database.csv
-   ```
 
-5. **Test locally** (optional but recommended):
-   ```bash
    cd instant-pot-app
    npm install
    npm run dev
    ```
 
-6. **Create a Pull Request** with:
+   > **Note:** You only need to edit `database.csv` in your PR. GitHub Actions automatically syncs it to the public folder when your PR is merged. The manual copy is only needed for local testing.
+
+5. **Create a Pull Request** with:
    - Clear description of what you're adding
    - Source citation
    - Any relevant notes about the recipe
