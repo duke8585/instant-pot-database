@@ -53,6 +53,7 @@ const DataTable = () => {
         return {
           accessorKey: key,
           header: key,
+          enableGlobalFilter: false,
           cell: info => {
             const source = info.getValue();
             // Parse markdown-style links: [text](url)
